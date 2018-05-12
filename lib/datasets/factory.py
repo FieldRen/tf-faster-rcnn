@@ -10,7 +10,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__sets = {}
+__sets = {} ##创建一个空的字典或集合，从后面的代码来看应该是个字典
 from datasets.pascal_voc import pascal_voc
 from datasets.coco import coco
 
@@ -46,7 +46,7 @@ def get_imdb(name):
     raise KeyError('Unknown dataset: {}'.format(name))
   return __sets[name]()
 
-
+  
 def list_imdbs():
   """List all registered imdbs."""
   return list(__sets.keys())

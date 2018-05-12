@@ -1,4 +1,4 @@
-#!/bin/bash
+p.cs.cmu.edui!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )"
 cd $DIR
@@ -6,7 +6,8 @@ cd $DIR
 NET=res101
 FILE=voc_0712_80k-110k.tgz
 # replace it with gs11655.sp.cs.cmu.edu if ladoga.graphics.cs.cmu.edu does not work
-URL=http://ladoga.graphics.cs.cmu.edu/xinleic/tf-faster-rcnn/$NET/$FILE
+#URL=http://gs11655.sp.cs.cmu.edu/xinleic/tf-faster-rcnn/$NET/$FILE
+URL=https://drive.google.com/open?id=0B1_fAEgxdnvJVjFjTFl5cFd5cEk
 CHECKSUM=cb32e9df553153d311cc5095b2f8c340
 
 if [ -f $FILE ]; then

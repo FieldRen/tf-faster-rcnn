@@ -33,6 +33,10 @@ class pascal_voc(imdb):
     self._image_set = image_set
     self._devkit_path = self._get_default_path()
     self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
+    
+    """
+    训练自己的数据需要改的地方
+    """
     self._classes = ('__background__',  # always index 0
                      'aeroplane', 'bicycle', 'bird', 'boat',
                      'bottle', 'bus', 'car', 'cat', 'chair',
@@ -93,7 +97,7 @@ class pascal_voc(imdb):
     """
     Return the default path where PASCAL VOC is expected to be installed.
     """
-    return os.path.join(cfg.DATA_DIR, 'VOCdevkit' + self._year)
+    return os.path.join(cfg.DATA_DIR, 'VOCdevkit' )#+ self._year)
 
   def gt_roidb(self):
     """

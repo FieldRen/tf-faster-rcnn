@@ -1,6 +1,10 @@
 #!/bin/bash
 
-set -x
+# 默认情况下，脚本执行后，屏幕只显示运行结果，没有其他内容。如果多个命令连续执行，它们的运行结果就会连续输出。有时会分不清，某一段内容是什么命令产生的。
+# set -x 用来在运行结果之前，先输出执行的那一行命令
+# set -e 使得脚本只要发生错误，就终止执行。
+
+set -x 
 set -e
 
 export PYTHONUNBUFFERED="True"
@@ -45,6 +49,7 @@ case ${DATASET} in
     ;;
 esac
 
+#数据流重导向
 LOG="experiments/logs/${NET}_${TRAIN_IMDB}_${EXTRA_ARGS_SLUG}_${NET}.txt.`date +'%Y-%m-%d_%H-%M-%S'`"
 exec &> >(tee -a "$LOG")
 echo Logging output to "$LOG"
@@ -59,7 +64,7 @@ set -x
 
 if [ ! -f ${NET_FINAL}.index ]; then
   if [[ ! -z  ${EXTRA_ARGS_SLUG}  ]]; then
-    CUDA_VISIBLE_DEVICES=${GPU_ID} time python ./tools/trainval_net.py \
+    CUDA_VISIBLE_DEVICES=${GPU_ID} time python3 ./tools/trainval_net.py \
       --weight data/imagenet_weights/${NET}.ckpt \
       --imdb ${TRAIN_IMDB} \
       --imdbval ${TEST_IMDB} \
@@ -70,7 +75,7 @@ if [ ! -f ${NET_FINAL}.index ]; then
       --set ANCHOR_SCALES ${ANCHORS} ANCHOR_RATIOS ${RATIOS} \
       TRAIN.STEPSIZE ${STEPSIZE} ${EXTRA_ARGS}
   else
-    CUDA_VISIBLE_DEVICES=${GPU_ID} time python ./tools/trainval_net.py \
+    CUDA_VISIBLE_DEVICES=${GPU_ID} time python3 ./tools/trainval_net.py \
       --weight data/imagenet_weights/${NET}.ckpt \
       --imdb ${TRAIN_IMDB} \
       --imdbval ${TEST_IMDB} \
